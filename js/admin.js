@@ -117,7 +117,11 @@ function simpleListEditor(containerId, values = []) {
       Array.from(container.querySelectorAll('input'))
         .map((i) => i.value.trim())
         .filter(Boolean),
-    addRow
+    addRow,
+    setValues: (newValues) => {
+      container.innerHTML = '';
+      (newValues.length ? newValues : ['']).forEach(addRow);
+    }
   };
 }
 
@@ -149,7 +153,12 @@ function specsEditor(containerId, specsObj = {}) {
       });
       return result;
     },
-    addRow
+    addRow,
+    setValues: (newObj) => {
+      container.innerHTML = '';
+      const newEntries = Object.entries(newObj);
+      (newEntries.length ? newEntries : [['', '']]).forEach(([k, v]) => addRow(k, v));
+    }
   };
 }
 
@@ -242,6 +251,7 @@ function resetForm() {
   document.getElementById('btn-cancel-edit').style.display = 'none';
   initDynamicEditors(null);
   updateImagePreview();
+  document.getElementById('amazon-paste-text').value = '';
 }
 
 function updateImagePreview() {
@@ -276,6 +286,94 @@ function readFormAsProduct() {
     specs: specsEd.getValues(),
     resenas: reviewsEd.getValues()
   };
+}
+
+/* ---------------------------------------------------------------------- */
+/* AUTORRELLENO DESDE TEXTO COPIADO DE AMAZON                              */
+/* No se descarga nada de Amazon: el usuario copia el texto de la página  */
+/* a mano y aquí solo lo analizamos con expresiones regulares para        */
+/* rellenar el formulario más rápido. Es una detección "best effort".     */
+/* ---------------------------------------------------------------------- */
+
+/**
+ * Convierte un número escrito en formato español o inglés a un número JS:
+ * "1.234,56" -> 1234.56 · "1,234.56" -> 1234.56 · "2.310" -> 2310 · "4,5" -> 4.5
+ */
+function parseLocaleNumber(raw) {
+  if (!raw) return null;
+  let s = raw.trim();
+  const hasComma = s.includes(',');
+  const hasDot = s.includes('.');
+
+  if (hasComma && hasDot) {
+    // El separador decimal es el que aparece más a la derecha; el otro es de miles.
+    if (s.lastIndexOf(',') > s.lastIndexOf('.')) {
+      s = s.replace(/\./g, '').replace(',', '.');
+    } else {
+      s = s.replace(/,/g, '');
+    }
+  } else if (hasComma) {
+    // Solo coma: es el decimal español (ej: "4,5" -> "4.5")
+    s = s.replace(',', '.');
+  } else if (hasDot) {
+    // Solo puntos: si agrupan de 3 en 3 son separador de miles español (ej: "2.310" -> 2310),
+    // si no, es un decimal normal (ej: "12.99" -> 12.99)
+    const parts = s.split('.');
+    const lastPart = parts[parts.length - 1];
+    if (parts.length > 1 && lastPart.length === 3 && parts.slice(0, -1).every((p) => p.length <= 3)) {
+      s = s.replace(/\./g, '');
+    }
+  }
+
+  const n = parseFloat(s);
+  return isNaN(n) ? null : n;
+}
+
+function parseAmazonPastedText(text) {
+  const lines = text.split('\n').map((l) => l.trim()).filter(Boolean);
+  const result = { nombre: '', precio: null, valoracion: null, numValoraciones: null, ventajas: [], specs: {} };
+
+  const ratingMatch = text.match(/(\d[.,]\d)\s*de\s*5\s*estrellas/i) || text.match(/(\d[.,]\d)\s*out of\s*5\s*stars/i);
+  if (ratingMatch) result.valoracion = parseLocaleNumber(ratingMatch[1]);
+
+  const countMatch = text.match(/([\d.,]+)\s*(valoraciones|calificaciones|ratings)/i);
+  if (countMatch) result.numValoraciones = Math.round(parseLocaleNumber(countMatch[1]) || 0);
+
+  const priceMatches = [...text.matchAll(/(\d{1,3}(?:[.,]\d{3})*[.,]\d{2})\s?€/g)];
+  if (priceMatches.length) {
+    result.precio = parseLocaleNumber(priceMatches[0][1]);
+  } else {
+    const usdMatch = text.match(/\$\s?(\d{1,3}(?:,\d{3})*\.\d{2})/);
+    if (usdMatch) result.precio = parseLocaleNumber(usdMatch[1]);
+  }
+
+  const skipPatterns = [/de 5 estrellas/i, /out of 5 stars/i, /valoraciones/i, /ratings/i, /€/, /^\$/, /^Visita la tienda/i, /^Marca:/i, /amazon\.(es|com)/i];
+  result.nombre = lines.find((l) => l.length > 15 && l.length < 200 && !skipPatterns.some((p) => p.test(l))) || '';
+
+  const aboutIndex = lines.findIndex((l) => /acerca de este art[ií]culo/i.test(l));
+  if (aboutIndex !== -1) {
+    for (let i = aboutIndex + 1; i < lines.length && result.ventajas.length < 8; i += 1) {
+      const l = lines[i];
+      if (/^(informaci[oó]n t[eé]cnica|detalles del producto|opiniones|rese[ñn]as|garant[ií]a|pregunta)/i.test(l)) break;
+      if (l.length > 5) result.ventajas.push(l.replace(/^[•\-•]\s*/, ''));
+    }
+  }
+
+  const specsIndex = lines.findIndex((l) => /informaci[oó]n t[eé]cnica|detalles del producto/i.test(l));
+  if (specsIndex !== -1) {
+    for (let i = specsIndex + 1; i + 1 < lines.length && Object.keys(result.specs).length < 15; i += 2) {
+      const key = lines[i];
+      const value = lines[i + 1];
+      if (/opiniones|rese[ñn]as|garant[ií]a|pregunta/i.test(key)) break;
+      if (key && value && key.length < 40 && value.length < 120) {
+        result.specs[key] = value;
+      } else {
+        break;
+      }
+    }
+  }
+
+  return result;
 }
 
 /* ---------------------------------------------------------------------- */
@@ -407,6 +505,50 @@ async function initAdmin() {
   });
 
   document.getElementById('btn-cancel-edit').addEventListener('click', resetForm);
+
+  document.getElementById('btn-parse-amazon').addEventListener('click', () => {
+    const text = document.getElementById('amazon-paste-text').value;
+    if (!text.trim()) {
+      showStatus('Pega primero el texto copiado de la página del producto en Amazon.', 'error');
+      return;
+    }
+
+    const detected = parseAmazonPastedText(text);
+    let fieldsFound = 0;
+
+    if (detected.nombre) {
+      document.getElementById('f-nombre').value = detected.nombre;
+      fieldsFound += 1;
+    }
+    if (detected.precio !== null) {
+      document.getElementById('f-precio').value = detected.precio;
+      fieldsFound += 1;
+    }
+    if (detected.valoracion !== null) {
+      document.getElementById('f-valoracion').value = detected.valoracion;
+      fieldsFound += 1;
+    }
+    if (detected.numValoraciones !== null) {
+      document.getElementById('f-num-valoraciones').value = detected.numValoraciones;
+      fieldsFound += 1;
+    }
+    if (detected.ventajas.length) {
+      ventajasEditor.setValues(detected.ventajas);
+      fieldsFound += 1;
+    }
+    if (Object.keys(detected.specs).length) {
+      specsEd.setValues(detected.specs);
+      fieldsFound += 1;
+    }
+
+    if (fieldsFound === 0) {
+      showStatus('No se ha reconocido ningún dato en el texto pegado. Prueba a copiar más contenido de la página (título, precio, valoración, "Acerca de este artículo" e "Información técnica") o rellena el formulario a mano.', 'error');
+      return;
+    }
+
+    showStatus(`Detectados datos en ${fieldsFound} campo(s). Revísalos y añade la imagen y el link de afiliado antes de guardar.`, 'ok');
+    document.getElementById('f-nombre').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
 
   document.getElementById('admin-search').addEventListener('input', (e) => renderTable(e.target.value));
 

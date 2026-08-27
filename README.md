@@ -83,6 +83,36 @@ GitHub Pages, Netlify, Vercel, Cloudflare Pages, o tu hosting habitual.
    (inicio, categorías, fichas de producto y comparador) mostrará los
    productos nuevos automáticamente, sin tocar ni una línea de código.
 
+### ✨ Autorrelleno desde Amazon (pegando texto)
+
+No es posible que la web lea Amazon automáticamente solo pegando el link: el navegador
+bloquea esas peticiones entre webs (CORS) y, además, el Programa de Afiliados de Amazon
+prohíbe extraer datos de sus páginas de forma automatizada (scraping), incluso si fuera
+técnicamente posible.
+
+En su lugar, el panel incluye un cuadro de **"Autorrelleno desde Amazon"** que sí es
+100% seguro y permitido: tú mismo copias el texto de la página del producto (nada se
+descarga automáticamente) y un script local detecta y rellena por ti:
+- Nombre del producto
+- Precio
+- Valoración y nº de valoraciones
+- Ventajas (a partir de "Acerca de este artículo")
+- Especificaciones (a partir de "Información técnica")
+
+Cómo usarlo:
+1. Abre el producto en Amazon.
+2. Selecciona el texto de la página (idealmente desde el título hasta el final de
+   "Información técnica") y cópialo.
+3. Pégalo en el cuadro de texto del admin y pulsa "🪄 Detectar datos automáticamente".
+4. Revisa los campos rellenados (la detección es orientativa, no siempre acierta al 100%)
+   y añade a mano la **imagen** (URL de la foto) y tu **link de afiliado**, que nunca se
+   autorrellenan.
+
+Si en el futuro tu cuenta de Afiliado consigue ventas cualificadas, existe una vía 100%
+automática y permitida: la API oficial de Amazon (Product Advertising API), que requeriría
+añadir un pequeño servidor/función serverless para consultar los datos sin exponer las
+claves de la API en el navegador. Dímelo cuando llegue ese momento y lo montamos.
+
 **Botones extra del panel:**
 - **"📂 Importar JSON"**: carga un `products.json` desde tu ordenador al
   borrador de trabajo (útil si quieres retomar un archivo ya publicado).

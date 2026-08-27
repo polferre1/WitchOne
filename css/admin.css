@@ -9,6 +9,22 @@
   background: var(--color-bg);
 }
 
+.admin-col-left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+#amazon-paste-panel {
+  border-color: rgba(245, 184, 65, 0.35);
+}
+
+#amazon-paste-text {
+  resize: vertical;
+  font-family: monospace;
+  font-size: 0.8rem;
+}
+
 .admin-topbar {
   background: var(--color-bg-alt);
   border-bottom: 1px solid var(--color-border);

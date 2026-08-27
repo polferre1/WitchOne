@@ -53,8 +53,31 @@
 
     <div class="admin-shell">
 
-      <!-- ======================= FORMULARIO DE PRODUCTO ======================= -->
-      <div class="panel">
+      <div class="admin-col-left">
+
+        <!-- ======================= AUTORRELLENO DESDE AMAZON ======================= -->
+        <div class="panel" id="amazon-paste-panel">
+          <h3 style="margin-bottom:10px">✨ Autorrelleno desde Amazon</h3>
+          <p class="hint" style="margin-bottom:12px;font-size:.8rem">
+            No podemos leer Amazon automáticamente solo con el link (el navegador lo bloquea y además
+            Amazon prohíbe el scraping automatizado en su programa de afiliados). Pero puedes hacerlo así:
+            abre el producto en Amazon → selecciona el texto de la página, idealmente desde el título hasta
+            el final de "Información técnica" → cópialo (Ctrl+C, o mantener pulsado y "Copiar" en el móvil) →
+            pégalo aquí abajo. Detectaremos nombre, precio, valoración, nº de valoraciones, ventajas y
+            especificaciones automáticamente.
+          </p>
+          <div class="form-group">
+            <textarea id="amazon-paste-text" rows="6" placeholder="Pega aquí el texto copiado de la página del producto en Amazon..."></textarea>
+          </div>
+          <button type="button" id="btn-parse-amazon" class="btn btn-primary btn-sm">🪄 Detectar datos automáticamente</button>
+          <div class="hint" style="margin-top:10px">
+            Es una detección "best effort": revisa siempre los campos rellenados antes de guardar. La imagen
+            y el link de afiliado nunca se autorrellenan, esos los pones tú a mano.
+          </div>
+        </div>
+
+        <!-- ======================= FORMULARIO DE PRODUCTO ======================= -->
+        <div class="panel">
         <h3 id="form-title" style="margin-bottom:18px">Nuevo producto</h3>
         <form id="product-form">
 
@@ -149,6 +172,8 @@
             <button type="button" id="btn-cancel-edit" class="btn btn-outline" style="display:none">Cancelar edición</button>
           </div>
         </form>
+        </div>
+
       </div>
 
       <!-- ======================= LISTADO DE PRODUCTOS ======================= -->
