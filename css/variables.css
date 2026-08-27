@@ -1,0 +1,48 @@
+/* ==========================================================================
+   VARIABLES GLOBALES
+   Aquí se define toda la paleta de colores, tipografías y medidas.
+   Si en el futuro quieres cambiar el "look" de la web, este es el
+   único archivo que necesitas tocar en la mayoría de los casos.
+   ========================================================================== */
+
+:root {
+  /* --- Colores de fondo --- */
+  --color-bg: #12081f;              /* Fondo principal (morado casi negro) */
+  --color-bg-alt: #1a0f2b;          /* Fondo alterno de secciones */
+  --color-surface: #1e1033;         /* Fondo de tarjetas y paneles */
+  --color-surface-light: #2a1a45;   /* Tarjetas al hacer hover / paneles elevados */
+
+  /* --- Colores de marca --- */
+  --color-primary: #7c3aed;         /* Violeta vibrante (marca) */
+  --color-primary-light: #a855f7;   /* Púrpura magenta (hover / acentos) */
+  --color-accent: #f5b841;          /* Dorado (CTA "Ver en Amazon", estrellas) */
+  --color-accent-dark: #d99a2b;     /* Dorado oscuro (hover del CTA) */
+
+  /* --- Colores de texto --- */
+  --color-text: #f5f3fa;            /* Texto principal */
+  --color-text-muted: #b7abc9;      /* Texto secundario */
+  --color-text-faint: #8577a0;      /* Texto terciario / placeholders */
+
+  /* --- Bordes y estados --- */
+  --color-border: #3a2856;          /* Bordes y separadores */
+  --color-success: #4ade80;         /* Verde éxito / disponibilidad */
+  --color-danger: #f87171;          /* Rojo error / eliminar */
+  --color-star: #f5b841;            /* Color de las estrellas de valoración */
+
+  /* --- Tipografías --- */
+  --font-body: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif; /* Logo y titulares con carácter místico */
+
+  /* --- Radios y sombras --- */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --shadow-glow: 0 0 0 1px rgba(168, 85, 247, 0.25), 0 8px 24px rgba(124, 58, 237, 0.25);
+
+  /* --- Layout --- */
+  --max-width: 1200px;
+  --header-height: 76px;
+  --transition-fast: 0.18s ease;
+  --transition-medium: 0.32s ease;
+}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de administración · WitchOne</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- ======================= BARRA SUPERIOR DEL ADMIN ======================= -->
+  <div class="admin-topbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="spark">✦</span><span class="brand-one">Witch</span>One <span class="text-muted" style="font-family:var(--font-body);font-size:.8rem;font-weight:400">/ admin</span>
+      </a>
+      <div class="actions">
+        <label class="btn btn-outline btn-sm" style="cursor:pointer">
+          📂 Importar JSON
+          <input type="file" id="import-file" accept="application/json" style="display:none">
+        </label>
+        <button type="button" id="btn-reload-file" class="btn btn-outline btn-sm">↺ Recargar desde archivo</button>
+        <button type="button" id="btn-export" class="btn btn-primary btn-sm">⬇ Descargar products.json</button>
+        <a href="index.html" class="btn btn-outline btn-sm">Ver web →</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+    <div class="admin-header">
+      <h1 style="font-size:1.6rem">Gestor de productos</h1>
+      <p class="text-muted">Añade, edita y borra productos sin tocar código. Los cambios se guardan como borrador en este navegador; descarga el JSON para publicarlos.</p>
+    </div>
+
+    <!-- ======================= INSTRUCCIONES ======================= -->
+    <div class="admin-intro">
+      <strong>¿Cómo publico mis cambios en la web?</strong>
+      <ol>
+        <li>Crea, edita o borra productos con el formulario y la tabla de abajo. Se guardan automáticamente como borrador en este navegador (no se pierden si recargas la página).</li>
+        <li>Cuando termines, pulsa <strong>"⬇ Descargar products.json"</strong>. Se descargará el archivo actualizado con todos tus productos.</li>
+        <li>Sustituye el archivo <code>data/products.json</code> de la carpeta del proyecto por el que acabas de descargar.</li>
+        <li>Sube ese cambio a donde tengas alojada la web (commit + deploy, subida por FTP, arrastrar el archivo en tu hosting, etc.). En cuanto el archivo esté actualizado, la web principal mostrará los productos nuevos automáticamente.</li>
+      </ol>
+    </div>
+
+    <div id="admin-status" class="admin-status"></div>
+
+    <div class="admin-shell">
+
+      <!-- ======================= FORMULARIO DE PRODUCTO ======================= -->
+      <div class="panel">
+        <h3 id="form-title" style="margin-bottom:18px">Nuevo producto</h3>
+        <form id="product-form">
+
+          <div class="form-group">
+            <label for="f-nombre">Nombre del producto *</label>
+            <input type="text" id="f-nombre" required placeholder="Ej: Lenovo IdeaPad Slim 3">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="f-categoria">Categoría *</label>
+              <select id="f-categoria" required></select>
+            </div>
+            <div class="form-group">
+              <label for="f-link">Link de afiliado (Amazon) *</label>
+              <input type="url" id="f-link" required placeholder="https://www.amazon.es/dp/XXXX?tag=tuid-21">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="f-imagen">URL de la imagen *</label>
+            <input type="url" id="f-imagen" required placeholder="https://...">
+            <div class="hint">Puedes usar la URL de la imagen del producto en Amazon o subir la imagen a un hosting y pegar aquí el enlace.</div>
+            <div class="image-preview" id="image-preview"></div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="f-precio">Precio actual (€) *</label>
+              <input type="number" id="f-precio" step="0.01" min="0" required placeholder="599.00">
+            </div>
+            <div class="form-group">
+              <label for="f-precio-original">Precio original (€)</label>
+              <input type="number" id="f-precio-original" step="0.01" min="0" placeholder="699.00">
+              <div class="hint">Opcional, se usa para mostrar el % de descuento.</div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="f-valoracion">Valoración (0 a 5)</label>
+              <input type="number" id="f-valoracion" step="0.1" min="0" max="5" value="4.5">
+            </div>
+            <div class="form-group">
+              <label for="f-num-valoraciones">Nº de valoraciones</label>
+              <input type="number" id="f-num-valoraciones" min="0" value="0">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+              <input type="checkbox" id="f-disponible" checked style="width:auto">
+              Disponible / en stock en Amazon
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label for="f-descripcion">Descripción</label>
+            <textarea id="f-descripcion" rows="4" placeholder="Breve descripción del producto..."></textarea>
+          </div>
+
+          <!-- ======================= VENTAJAS ======================= -->
+          <div class="form-group">
+            <label>Ventajas</label>
+            <div class="form-list-editor" id="ventajas-editor"></div>
+            <button type="button" id="ventajas-add" class="btn btn-outline btn-sm add-row-btn">+ Añadir ventaja</button>
+          </div>
+
+          <!-- ======================= DESVENTAJAS ======================= -->
+          <div class="form-group">
+            <label>Desventajas</label>
+            <div class="form-list-editor" id="desventajas-editor"></div>
+            <button type="button" id="desventajas-add" class="btn btn-outline btn-sm add-row-btn">+ Añadir desventaja</button>
+          </div>
+
+          <!-- ======================= ESPECIFICACIONES ======================= -->
+          <div class="form-group">
+            <label>Especificaciones técnicas</label>
+            <div class="specs-editor" id="specs-editor"></div>
+            <button type="button" id="specs-add" class="btn btn-outline btn-sm add-row-btn">+ Añadir especificación</button>
+          </div>
+
+          <!-- ======================= RESEÑAS ======================= -->
+          <div class="form-group">
+            <label>Reseñas (texto extraído manualmente de Amazon)</label>
+            <div class="reviews-editor" id="reviews-editor"></div>
+            <button type="button" id="reviews-add" class="btn btn-outline btn-sm add-row-btn">+ Añadir reseña</button>
+          </div>
+
+          <div class="form-footer-actions">
+            <button type="submit" class="btn btn-primary btn-block">Guardar producto</button>
+            <button type="button" id="btn-cancel-edit" class="btn btn-outline" style="display:none">Cancelar edición</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- ======================= LISTADO DE PRODUCTOS ======================= -->
+      <div class="panel">
+        <div class="admin-toolbar">
+          <h3 id="products-count">0 productos en total</h3>
+          <div class="admin-search">
+            <input type="text" id="admin-search" placeholder="Buscar producto...">
+          </div>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+                <th>Valoración</th>
+                <th>Stock</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="products-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

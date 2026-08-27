@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Producto · WitchOne</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+  <!-- ======================= CABECERA / NAVEGACIÓN ======================= -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="spark">✦</span><span class="brand-one">Witch</span>One
+      </a>
+      <button class="nav-toggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="main-nav">
+        <a href="categoria.html?cat=sobremesa" data-page="categoria.html">Sobremesa</a>
+        <a href="categoria.html?cat=portatiles" data-page="categoria.html">Portátiles</a>
+        <a href="categoria.html?cat=moviles" data-page="categoria.html">Móviles</a>
+        <a href="categoria.html?cat=tablets" data-page="categoria.html">Tablets</a>
+        <a href="comparador.html" class="compare-link" data-page="comparador.html">⚖️ Comparador</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="breadcrumbs" style="margin-top:20px">
+        <a href="index.html">Inicio</a> /
+        <a href="categoria.html" id="breadcrumb-category">Categoría</a> /
+        <span id="breadcrumb-product">Producto</span>
+      </div>
+
+      <div id="product-root">
+        <!-- ======================= FICHA DE PRODUCTO ======================= -->
+        <div class="product-detail">
+          <div class="gallery">
+            <img id="product-image" src="" alt="">
+          </div>
+
+          <div class="info">
+            <h1 id="product-title"></h1>
+            <div class="meta-row">
+              <span class="rating" id="product-rating"></span>
+              <span id="product-availability"></span>
+            </div>
+
+            <div class="price-box">
+              <div>
+                <div class="price" id="product-price"></div>
+                <div id="product-original-price" class="text-muted" style="margin-top:6px"></div>
+              </div>
+              <a href="#" id="product-cta" class="btn btn-amazon" target="_blank" rel="nofollow sponsored noopener">Ver en Amazon</a>
+            </div>
+
+            <p class="description" id="product-description"></p>
+
+            <div style="margin-bottom:30px">
+              <a href="#" id="compare-link" class="btn btn-outline btn-sm">⚖️ Añadir al comparador</a>
+            </div>
+
+            <!-- ======================= VENTAJAS / DESVENTAJAS ======================= -->
+            <section>
+              <h2>Ventajas y desventajas</h2>
+              <div class="pros-cons">
+                <div class="block pros">
+                  <h4>👍 Ventajas</h4>
+                  <ul id="product-pros"></ul>
+                </div>
+                <div class="block cons">
+                  <h4>👎 Desventajas</h4>
+                  <ul id="product-cons"></ul>
+                </div>
+              </div>
+            </section>
+
+            <!-- ======================= ESPECIFICACIONES ======================= -->
+            <section>
+              <h2>Especificaciones técnicas</h2>
+              <table class="specs-table">
+                <tbody id="product-specs"></tbody>
+              </table>
+            </section>
+
+            <!-- ======================= RESEÑAS ======================= -->
+            <section>
+              <h2>Reseñas de compradores</h2>
+              <p class="text-muted" style="margin-bottom:16px;font-size:.85rem">
+                Reseñas seleccionadas manualmente a partir de opiniones publicadas en Amazon.
+              </p>
+              <div id="product-reviews"></div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ======================= PIE DE PÁGINA ======================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand">
+          <a href="index.html" class="logo"><span class="spark">✦</span><span class="brand-one">Witch</span>One</a>
+          <p>Comparativas y recomendaciones de tecnología para ayudarte a elegir sin complicaciones.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Categorías</h4>
+          <ul>
+            <li><a href="categoria.html?cat=sobremesa">Ordenadores Sobremesa</a></li>
+            <li><a href="categoria.html?cat=portatiles">Portátiles</a></li>
+            <li><a href="categoria.html?cat=moviles">Móviles</a></li>
+            <li><a href="categoria.html?cat=tablets">Tablets</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Herramientas</h4>
+          <ul>
+            <li><a href="comparador.html">Comparador de productos</a></li>
+            <li><a href="admin.html">Panel de administración</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="affiliate-disclosure">
+        <strong>Aviso de afiliación:</strong> WitchOne es un participante en el Programa de Afiliados de Amazon EU, un
+        programa de publicidad para afiliados diseñado para ofrecer a los sitios web un medio para obtener comisiones
+        por publicidad, publicitando e incluyendo enlaces a Amazon.es. Como Afiliado de Amazon, obtenemos ingresos por
+        las compras adscritas que cumplen los requisitos aplicables, sin coste adicional para ti. Los precios mostrados
+        son orientativos y pueden variar; consulta siempre el precio final en Amazon antes de comprar.
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 WitchOne. Todos los derechos reservados.</span>
+        <span>Amazon y el logotipo de Amazon son marcas registradas de Amazon.com, Inc. o sus filiales.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/nav.js"></script>
+  <script type="module" src="js/render-product.js"></script>
+</body>
+</html>

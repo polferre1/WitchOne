@@ -1,0 +1,518 @@
+/* ==========================================================================
+   COMPONENTES REUTILIZABLES
+   Tarjetas de producto, botones, estrellas de valoración, tablas
+   comparativas, formularios... cualquier pieza que se repite en varias
+   páginas vive aquí.
+   ========================================================================== */
+
+/* ---------- BOTONES ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  color: #fff;
+  box-shadow: var(--shadow-glow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+.btn-amazon {
+  background: var(--color-accent);
+  color: #1a1200;
+}
+
+.btn-amazon:hover {
+  background: var(--color-accent-dark);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.btn-outline:hover {
+  border-color: var(--color-primary-light);
+  color: var(--color-primary-light);
+}
+
+.btn-danger {
+  background: rgba(248, 113, 113, 0.15);
+  color: var(--color-danger);
+  border: 1px solid rgba(248, 113, 113, 0.4);
+}
+
+.btn-danger:hover {
+  background: rgba(248, 113, 113, 0.25);
+}
+
+.btn-sm {
+  padding: 8px 14px;
+  font-size: 0.82rem;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* ---------- ESTRELLAS DE VALORACIÓN ---------- */
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-star);
+  font-size: 0.9rem;
+}
+
+.rating .stars {
+  letter-spacing: 1px;
+}
+
+.rating .count {
+  color: var(--color-text-faint);
+  font-size: 0.82rem;
+}
+
+/* ---------- TARJETA DE CATEGORÍA (home) ---------- */
+.category-card {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  overflow: hidden;
+  transition: transform var(--transition-medium), border-color var(--transition-medium);
+}
+
+.category-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-primary);
+}
+
+.category-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.25), transparent 60%);
+  opacity: 0;
+  transition: opacity var(--transition-medium);
+}
+
+.category-card:hover::after {
+  opacity: 1;
+}
+
+.category-card .icon {
+  font-size: 2.4rem;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+
+.category-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+.category-card p {
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+  margin-bottom: 18px;
+}
+
+.category-card .count-tag {
+  font-size: 0.8rem;
+  color: var(--color-text-faint);
+}
+
+/* ---------- TARJETA DE PRODUCTO ---------- */
+.product-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-soft);
+}
+
+.product-card .thumb {
+  aspect-ratio: 1 / 1;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.product-card .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 14px;
+}
+
+.product-card .body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.product-card h3 {
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.product-card h3 a {
+  color: var(--color-text);
+}
+
+.product-card h3 a:hover {
+  color: var(--color-primary-light);
+}
+
+.product-card .price {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.product-card .price small {
+  font-size: 0.7rem;
+  color: var(--color-text-faint);
+  font-weight: 400;
+  display: block;
+}
+
+.product-card .card-actions {
+  margin-top: auto;
+  display: flex;
+  gap: 8px;
+}
+
+.product-card .card-actions .btn {
+  flex: 1;
+}
+
+.product-card .compare-check {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+/* ---------- FILTROS DE CATEGORÍA ---------- */
+.filters-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  padding: 16px 20px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.filters-bar .group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filters-bar select,
+.filters-bar input {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-size: 0.88rem;
+}
+
+.filters-bar select:focus,
+.filters-bar input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+/* ---------- GRID DE PRODUCTOS ---------- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 22px;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+/* ---------- BARRA FLOTANTE DE COMPARACIÓN ---------- */
+.compare-bar {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(140%);
+  background: var(--color-surface-light);
+  border: 1px solid var(--color-primary);
+  box-shadow: var(--shadow-soft);
+  border-radius: 999px;
+  padding: 10px 12px 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 90;
+  transition: transform var(--transition-medium);
+}
+
+.compare-bar.visible {
+  transform: translateX(-50%) translateY(0);
+}
+
+.compare-bar .count {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* ---------- LISTAS PROS / CONTRAS ---------- */
+.pros-cons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.pros-cons .block {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+.pros-cons h4 {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pros-cons.pros h4 { color: var(--color-success); }
+.pros-cons .block.cons h4 { color: var(--color-danger); }
+
+.pros-cons .block li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 10px;
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+}
+
+.pros-cons .block.pros li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-success);
+  font-weight: 700;
+}
+
+.pros-cons .block.cons li::before {
+  content: "✕";
+  position: absolute;
+  left: 0;
+  color: var(--color-danger);
+  font-weight: 700;
+}
+
+/* ---------- TABLA DE SPECS / COMPARATIVA ---------- */
+.specs-table,
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.specs-table td,
+.compare-table td,
+.compare-table th {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.9rem;
+  vertical-align: top;
+}
+
+.specs-table tr:last-child td,
+.compare-table tr:last-child td {
+  border-bottom: none;
+}
+
+.specs-table td:first-child {
+  color: var(--color-text-muted);
+  width: 40%;
+}
+
+.compare-table th {
+  background: var(--color-surface-light);
+  text-align: left;
+}
+
+.compare-table td.label-col,
+.compare-table th.label-col {
+  width: 180px;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.compare-table img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: var(--radius-sm);
+  padding: 6px;
+}
+
+.compare-table .remove-col {
+  color: var(--color-danger);
+  font-size: 0.78rem;
+}
+
+/* ---------- RESEÑAS ---------- */
+.review {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  margin-bottom: 14px;
+}
+
+.review .review-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.review .author {
+  font-weight: 600;
+}
+
+.review p {
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+}
+
+/* ---------- TARJETA / PANEL GENÉRICO ---------- */
+.panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+}
+
+/* ---------- FORMULARIOS ---------- */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 0.92rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.form-group .hint {
+  font-size: 0.76rem;
+  color: var(--color-text-faint);
+  margin-top: 4px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-list-editor .list-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.form-list-editor .list-row input {
+  flex: 1;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1024px) {
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pros-cons {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 14px;
+  }
+}

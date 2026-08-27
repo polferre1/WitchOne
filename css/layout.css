@@ -1,0 +1,191 @@
+/* ==========================================================================
+   LAYOUT
+   Cabecera (header), navegación, menú móvil y pie de página (footer).
+   Estos elementos se repiten en todas las páginas de la web principal.
+   ========================================================================== */
+
+/* ---------- HEADER ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  background: rgba(18, 8, 31, 0.85);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo .spark {
+  color: var(--color-accent);
+}
+
+.logo span.brand-one {
+  color: var(--color-primary-light);
+}
+
+/* ---------- NAVEGACIÓN ---------- */
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.main-nav a {
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  transition: background var(--transition-fast), color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+  background: rgba(124, 58, 237, 0.15);
+  color: var(--color-text);
+}
+
+.main-nav a.compare-link {
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary-light);
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+}
+
+.nav-toggle span {
+  width: 24px;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+}
+
+/* ---------- FOOTER ---------- */
+.site-footer {
+  background: var(--color-bg-alt);
+  border-top: 1px solid var(--color-border);
+  margin-top: 80px;
+  padding: 40px 0 24px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 28px;
+}
+
+.footer-col h4 {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text);
+  margin-bottom: 14px;
+}
+
+.footer-col ul li {
+  margin-bottom: 8px;
+}
+
+.footer-col ul li a {
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.footer-col ul li a:hover {
+  color: var(--color-primary-light);
+}
+
+.footer-brand p {
+  color: var(--color-text-muted);
+  margin-top: 10px;
+  font-size: 0.92rem;
+  max-width: 340px;
+}
+
+.affiliate-disclosure {
+  border-top: 1px solid var(--color-border);
+  padding-top: 20px;
+  font-size: 0.82rem;
+  color: var(--color-text-faint);
+  line-height: 1.6;
+}
+
+.affiliate-disclosure strong {
+  color: var(--color-text-muted);
+}
+
+.footer-bottom {
+  margin-top: 18px;
+  font-size: 0.78rem;
+  color: var(--color-text-faint);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .main-nav {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    background: var(--color-bg-alt);
+    border-bottom: 1px solid var(--color-border);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px;
+    gap: 4px;
+    transform: translateY(-150%);
+    opacity: 0;
+    transition: transform var(--transition-medium), opacity var(--transition-medium);
+  }
+
+  .main-nav.open {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .main-nav a {
+    width: 100%;
+    padding: 14px 16px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}

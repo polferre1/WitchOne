@@ -1,0 +1,800 @@
+{
+  "productos": [
+    {
+      "id": "sob-001",
+      "categoria": "sobremesa",
+      "nombre": "HP Pavilion Gaming TG01",
+      "imagen": "https://placehold.co/500x500/ffffff/7c3aed?text=HP+Pavilion",
+      "precio": 749.99,
+      "precioOriginal": 899.99,
+      "valoracion": 4.4,
+      "numValoraciones": 812,
+      "disponible": true,
+      "linkAfiliado": "https://www.amazon.es/dp/EJEMPLO1?tag=tuid-21",
+      "descripcion": "Ordenador de sobremesa orientado a gaming y multitarea, con buena relación calidad-precio para quien empieza a montar su primer PC potente sin complicarse con el montaje.",
+      "ventajas": [
+        "Buen rendimiento para gaming en 1080p",
+        "Fácil de ampliar (RAM y almacenamiento)",
+        "Diseño compacto para escritorios pequeños",
+        "Arranque muy rápido gracias al SSD"
+      ],
+      "desventajas": [
+        "La fuente de alimentación limita futuras ampliaciones de gráfica",
+        "Refrigeración de serie algo justa en cargas prolongadas",
+        "No incluye teclado ni ratón"
+      ],
+      "specs": {
+        "Procesador": "Intel Core i5-11400F",
+        "Tarjeta gráfica": "NVIDIA GTX 1660 Super 6GB",
+        "RAM": "16GB DDR4",
+        "Almacenamiento": "512GB SSD NVMe",
+        "Conectividad": "WiFi 5, Bluetooth 4.2",
+        "Sistema operativo": "Windows 11 Home"
+      },
+      "resenas": [
+        {
+          "autor": "Marcos T.",
+          "valoracion": 5,
+          "fecha": "2025-11-02",
+          "texto": "Va genial para lo que pagué, juego a shooters online sin lag y arranca en segundos."
+        },
+        {
+          "autor": "Laura G.",
+          "valoracion": 4,
+          "fecha": "2025-09-18",
+          "texto": "Cumple de sobra, aunque le tuve que añadir un ventilador extra para juegos exigentes."
+        }
+      ]
+    },
+    {
+      "id": "sob-002",
+      "categoria": "sobremesa",
+      "nombre": "Lenovo IdeaCentre 5",
+      "imagen": "https://placehold.co/500x500/ffffff/7c3aed?text=Lenovo+IdeaCentre",
+      "precio": 599.0,
+      "precioOriginal": 649.0,
+      "valoracion": 4.2,
+      "numValoraciones": 431,
+      "disponible": true,
+      "linkAfiliado": "https://www.amazon.es/dp/EJEMPLO2?tag=tuid-21",
+      "descripcion": "PC de sobremesa pensado para ofimática avanzada, edición ligera y estudio, con un chasis silencioso ideal para entornos domésticos.",
+      "ventajas": [
+        "Funcionamiento muy silencioso",
+        "Buena relación precio/rendimiento en tareas de oficina",
+        "Incluye teclado y ratón",
+        "Wifi 6 de serie"
+      ],
+      "desventajas": [
+        "Gráfica integrada, no apto para gaming exigente",
+        "Solo 2 puertos USB en la parte frontal"
+      ],
+      "specs": {
+        "Procesador": "AMD Ryzen 5 5600G",
+        "Tarjeta gráfica": "AMD Radeon Graphics (integrada)",
+        "RAM": "16GB DDR4",
+        "Almacenamiento": "1TB SSD NVMe",
+        "Conectividad": "WiFi 6, Bluetooth 5.1",
+        "Sistema operativo": "Windows 11 Home"
+      },
+      "resenas": [
+        {
+          "autor": "Ana P.",
+          "valoracion": 4,
+          "fecha": "2025-10-05",
+          "texto": "Perfecto para teletrabajo, muchas pestañas abiertas y videollamadas sin problema."
+        }
+      ]
+    },
+    {
+      "id": "sob-003",
+      "categoria": "sobremesa",
+      "nombre": "MSI Aegis RS",
+      "imagen": "https://placehold.co/500x500/ffffff/7c3aed?text=MSI+Aegis+RS",
+      "precio": 1499.0,
+      "precioOriginal": 1699.0,
+      "valoracion": 4.7,
+      "numValoraciones": 268,
+      "disponible": true,
+      "linkAfiliado": "https://www.amazon.es/dp/EJEMPLO3?tag=tuid-21",
+      "descripcion": "Torre gaming de gama alta pensada para jugar en 1440p/4K con margen para ampliar durante varios años.",
+      "ventajas": [
+        "Rendimiento excelente en 1440p y 4K",
+        "Chasis con gran flujo de aire",
+        "Fuente de alimentación de calidad para futuras ampliaciones",
+        "RGB personalizable"
+      ],
+      "desventajas": [
+        "Precio elevado",
+        "Voluminoso, requiere espacio en el escritorio",
+        "Consumo eléctrico alto en carga"
+      ],
+      "specs": {
+        "Procesador": "Intel Core i7-13700F",
+        "Tarjeta gráfica": "NVIDIA RTX 4070 12GB",
+        "RAM": "32GB DDR5",
+        "Almacenamiento": "1TB SSD NVMe + 1TB HDD",
+        "Conectividad": "WiFi 6E, Bluetooth 5.3",
+        "Sistema operativo": "Windows 11 Home"
+      },
+      "resenas": [
+        {
+          "autor": "David R.",
+          "valoracion": 5,
+          "fecha": "2025-12-01",
+          "texto": "Mueve todo lo que le he echado en 1440p a más de 100fps. Muy contento."
+        }
+      ]
+    },
+    {
+      "id": "sob-004",
+      "categoria": "sobremesa",
+      "nombre": "ASUS ROG Strix G35",
+      "imagen": "https://placehold.co/500x500/ffffff/7c3aed?text=ASUS+ROG+Strix",
+      "precio": 1899.0,
+      "precioOriginal": 2099.0,
+      "valoracion": 4.6,
+      "numValoraciones": 154,
+      "disponible": false,
+      "linkAfiliado": "https://www.amazon.es/dp/EJEMPLO4?tag=tuid-21",
+      "descripcion": "Equipo premium para gaming competitivo y streaming simultáneo, con refrigeración líquida de serie.",
+      "ventajas": [
+        "Refrigeración líquida integrada",
+        "Excelente para streaming mientras juegas",
+        "Panel frontal con acceso rápido a puertos",
+        "Materiales de construcción robustos"
+      ],
+      "desventajas": [
+        "Actualmente sin stock frecuente",
+        "Precio premium",
+        "El mantenimiento de la refrigeración líquida requiere más cuidado"
+      ],
+      "specs": {
+        "Procesador": "Intel Core i9-13900KF",
+        "Tarjeta gráfica": "NVIDIA RTX 4080 16GB",
+        "RAM": "32GB DDR5",
+        "Almacenamiento": "2TB SSD NVMe",
+        "Conectividad": "WiFi 6E, Bluetooth 5.3",
+        "Sistema operativo": "Windows 11 Home"
+      },
+      "resenas": []
+    },
+    {
+      "id": "sob-005",
+      "categoria": "sobremesa",
+      "nombre": "Mini PC Beelink SER5",
+      "imagen": "https://placehold.co/500x500/ffffff/7c3aed?text=Mini+PC+Beelink",
+      "precio": 349.0,
+      "precioOriginal": 399.0,
+      "valoracion": 4.3,
+      "numValoraciones": 592,
+      "disponible": true,
+      "linkAfiliado": "https://www.amazon.es/dp/EJEMPLO5?tag=tuid-21",
+      "descripcion": "Mini ordenador ultracompacto ideal para el salón, oficina pequeña o como centro multimedia, con un consumo muy reducido.",
+      "ventajas": [
+        "Tamaño extremadamente reducido",
+        "Consumo energético muy bajo",
+        "Silencioso incluso bajo carga",
+        "Buena relación precio/rendimiento para ofimática"
+      ],
+      "desventajas": [
+        "No apto para gaming ni edición pesada",
+        "Solo 2 ranuras de expansión internas"
+      ],
+      "specs": {
+        "Procesador": "AMD Ryzen 5 5600H",
+        "Tarjeta gráfica": "AMD Radeon Graphics (integrada)",
+        "RAM": "16GB DDR4",
+        "Almacenamiento": "500GB SSD NVMe",
+        "Conectividad": "WiFi 6, Bluetooth 5.2",
+        "Sistema operativo": "Windows 11 Pro"
+      },
+      "resenas": [
+        {
+          "autor": "Sonia M.",
+          "valoracion": 4,
+          "fecha": "2025-08-22",
+          "texto": "Ideal para el salón conectado a la tele, ocupa nada y no hace ruido."
+        }
+      ]
+    },
+    {
+      "id": "por-001",
+      "categoria": "portatiles",
+      "nombre": "Lenovo IdeaPad Slim 3",
+      "imagen": "https://placehold.co/500x500/ffffff/7c3aed?text=Lenovo+IdeaPad",
+      "precio": 549.0,
+      "precioOriginal": 649.0,
+      "valoracion": 4.3,
+      "numValoraciones": 1204,
+      "disponible": true,
+      "linkAfiliado": "https://www.amazon.es/dp/EJEMPLOA?tag=tuid-21",
+      "descripcion": "Portátil ligero para estudiantes y uso diario, con buena autonomía y pantalla nítida para trabajo y ocio ligero.",
+      "ventajas": [
+        "Muy ligero y fácil de transportar",
+        "Buena autonomía de batería (hasta 8h)",
+        "Pantalla Full HD nítida",
+        "Precio muy competitivo"
+      ],
+      "desventajas": [
+        "Gráfica integrada, no para gaming",
+        "Bisagra algo floja con el uso intensivo",
+        "Altavoces de calidad mejorable"
+      ],
+      "specs": {
+        "Procesador": "AMD Ryzen 5 7530U",
+        "Tarjeta gráfica": "AMD Radeon Graphics (integrada)",
+        "RAM": "16GB LPDDR5",
+        "Almacenamiento": "512GB SSD NVMe",
+        "Pantalla": "15.6'' Full HD IPS",
+        "Peso": "1.6 kg",
+        "Sistema operativo": "Windows 11 Home"
+      },
+      "resenas": [
+        {
+          "autor": "Iván C.",
+          "valoracion": 5,
+          "fecha": "2025-11-14",
+          "texto": "Para la universidad va perfecto, ligero y con batería de sobra para todo el día de clases."
+        }
+      ]
+    },
+    {
+      "id": "por-002",
+      "categoria": "portatiles",
+      "nombre": "Apple MacBook Air M2",
+      "imagen": "https://placehold.co/500x500/ffffff/7c3aed?text=MacBook+Air+M2",
+      "precio": 1099.0,
+      "precioOriginal": 1229.0,
+      "valoracion": 4.8,
+      "numValoraciones": 3021,
+      "disponible": true,
+      "linkAfiliado": "https://www.amazon.es/dp/EJEMPLOB?tag=tuid-21",
+      "descripcion": "Portátil ultradelgado con chip M2, pensado para creativos y profesionales que buscan potencia sin sacrificar autonomía.",
+      "ventajas": [
+        "Rendimiento excelente por vatio",
+        "Autonomía superior a 15 horas",
+        "Pantalla Retina de gran calidad",
+        "Silencioso, sin ventiladores"
+      ],
+      "desventajas": [
+        "Precio elevado frente a equivalentes Windows",
+        "Solo 2 puertos USB-C",
+        "RAM no ampliable posteriormente"
+      ],
+      "specs": {
+        "Procesador": "Apple M2 (8 núcleos)",
+        "Tarjeta gráfica": "GPU integrada de 8 núcleos",
+        "RAM": "8GB unificada",
+        "Almacenamiento": "256GB SSD",
+        "Pantalla": "13.6'' Liquid Retina",
+        "Peso": "1.24 kg",
+        "Sistema operativo": "macOS"
+      },
+      "resenas": [
+        {
+          "autor": "Carla V.",
+          "valoracion": 5,
+          "fecha": "2025-12-10",
+          "texto": "La batería dura muchísimo y edito fotos sin ningún tirón."
+        },
+        {
+          "autor": "Rubén A.",
+          "valoracion": 4,
+          "fecha": "2025-09-30",
+          "texto": "Muy buen equipo, eché en falta más puertos para periféricos."
+        }
+      ]
+    },
+    {
+      "id": "por-003",
+      "categoria": "portatiles",
+      "nombre": "ASUS TUF Gaming A15",
+      "imagen": "https://placehold.co/500x500/ffffff/7c3aed?text=ASUS+TUF+A15",
+      "precio": 899.0,
+      "precioOriginal": 999.0,
+      "valoracion": 4.5,
+      "numValoraciones": 876,
+      "disponible": true,
+      "linkAfiliado": "https://www.amazon.es/dp/EJEMPLOC?tag=tuid-21",
+      "descripcion": "Portátil gaming resistente y con gran relación calidad-precio, capaz de mover los últimos títulos en calidad media-alta.",
+      "ventajas": [
+        "Chasis certificado militar, muy resistente",
+        "Buen rendimiento gaming por el precio",
+        "Pantalla de 144Hz para fluidez en juegos",
+        "Teclado retroiluminado RGB"
+      ],
+      "desventajas": [
+        "Autonomía limitada en uso intensivo (~4h)",
+        "Se calienta bajo carga prolongada",
+        "Algo pesado para llevarlo a diario (2.2kg)"
+      ],
+      "specs": {
+        "Procesador": "AMD Ryzen 7 7735HS",
+        "Tarjeta gráfica": "NVIDIA RTX 4060 8GB",
+        "RAM": "16GB DDR5",
+        "Almacenamiento": "1TB SSD NVMe",
+        "Pantalla": "15.6'' FHD 144Hz",
+        "Peso": "2.2 kg",
+        "Sistema operativo": "Windows 11 Home"
+      },
+      "resenas": [
+        {
+          "autor": "Pablo N.",
+          "valoracion": 4,
+          "fecha": "2025-10-27",
+          "texto": "Muy buen portátil gaming por el precio, se nota que calienta si juegas horas seguidas."
+        }
+      ]
+    },
+    {
+      "id": "por-004",
+      "categoria": "portatiles",
+      "nombre": "HP Spectre x360",
+      "imagen": "https://placehold.co/500x500/ffffff/7c3aed?text=HP+Spectre+x360",
+      "precio": 1349.0,
+      "precioOriginal": 1499.0,
+      "valoracion": 4.6,
+      "numValoraciones": 402,
+      "disponible": true,
+      "linkAfiliado": "https://www.amazon.es/dp/EJEMPLOD?tag=tuid-21",
+      "descripcion": "Convertible 2 en 1 de gama premium, con pantalla táctil giratoria y acabados en aluminio de gran calidad.",
+      "ventajas": [
+        "Diseño premium en aluminio",
+        "Pantalla táctil giratoria 360°",
+        "Rendimiento sobrado para ofimática y creatividad ligera",
+        "Incluye lápiz óptico"
+      ],
+      "desventajas": [
+        "Precio alto para su segmento",
+        "Autonomía media (unas 7h de uso real)",
+        "Pocos puertos USB-A"
+      ],
+      "specs": {
+        "Procesador": "Intel Core i7-1355U",
+        "Tarjeta gráfica": "Intel Iris Xe (integrada)",
+        "RAM": "16GB LPDDR4x",
+        "Almacenamiento": "1TB SSD NVMe",
+        "Pantalla": "13.5'' OLED táctil",
+        "Peso": "1.36 kg",
+        "Sistema operativo": "Windows 11 Home"
+      },
+      "resenas": []
+    },
+    {
+      "id": "por-005",
+      "categoria": "portatiles",
+      "nombre": "Acer Aspire 5",
+      "imagen": "https://placehold.co/500x500/ffffff/7c3aed?text=Acer+Aspire+5",
+      "precio": 469.0,
+      "precioOriginal": 549.0,
+      "valoracion": 4.1,
+      "numValoraciones": 1543,
+      "disponible": true,
+      "linkAfiliado": "https://www.amazon.es/dp/EJEMPLOE?tag=tuid-21",
+      "descripcion": "Portátil todoterreno de entrada, ideal para tareas de oficina, navegación y estudio sin gastar de más.",
+      "ventajas": [
+        "Precio muy ajustado",
+        "Rendimiento correcto para tareas básicas",
+        "Buena selección de puertos (HDMI, USB-C, USB-A)"
+      ],
+      "desventajas": [
+        "Pantalla con brillo limitado",
+        "Bisagra y chasis de plástico poco premium",
+        "Ventilador ruidoso bajo carga"
+      ],
+      "specs": {
+        "Procesador": "Intel Core i5-1235U",
+        "Tarjeta gráfica": "Intel Iris Xe (integrada)",
+        "RAM": "8GB DDR4",
+        "Almacenamiento": "512GB SSD NVMe",
+        "Pantalla": "15.6'' Full HD IPS",
+        "Peso": "1.78 kg",
+        "Sistema operativo": "Windows 11 Home"
+      },
+      "resenas": [
+        {
+          "autor": "Noelia F.",
+          "valoracion": 4,
+          "fecha": "2025-07-19",
+          "texto": "Para lo que pagué cumple perfectamente, solo para uso de oficina y navegar."
+        }
+      ]
+    },
+    {
+      "id": "mov-001",
+      "categoria": "moviles",
+      "nombre": "Samsung Galaxy S24",
+      "imagen": "https://placehold.co/500x500/ffffff/7c3aed?text=Galaxy+S24",
+      "precio": 799.0,
+      "precioOriginal": 899.0,
+      "valoracion": 4.6,
+      "numValoraciones": 2210,
+      "disponible": true,
+      "linkAfiliado": "https://www.amazon.es/dp/EJEMPLOF?tag=tuid-21",
+      "descripcion": "Smartphone insignia con gran pantalla, cámara versátil y funciones de IA integradas para el día a día.",
+      "ventajas": [
+        "Pantalla AMOLED muy luminosa",
+        "Cámara excelente en cualquier condición de luz",
+        "Rendimiento fluido con actualizaciones garantizadas años",
+        "Buena resistencia al agua y polvo (IP68)"
+      ],
+      "desventajas": [
+        "Carga algo lenta comparada con la competencia china",
+        "Precio elevado frente a otras opciones Android",
+        "No incluye cargador en la caja"
+      ],
+      "specs": {
+        "Pantalla": "6.2'' Dynamic AMOLED 2X, 120Hz",
+        "Procesador": "Snapdragon 8 Gen 3",
+        "RAM": "8GB",
+        "Almacenamiento": "256GB",
+        "Cámara": "50MP + 12MP + 10MP",
+        "Batería": "4000 mAh",
+        "Sistema operativo": "Android 14"
+      },
+      "resenas": [
+        {
+          "autor": "Julia M.",
+          "valoracion": 5,
+          "fecha": "2025-12-05",
+          "texto": "Las fotos de noche son espectaculares, notable mejora respecto a mi móvil anterior."
+        }
+      ]
+    },
+    {
+      "id": "mov-002",
+      "categoria": "moviles",
+      "nombre": "Apple iPhone 15",
+      "imagen": "https://placehold.co/500x500/ffffff/7c3aed?text=iPhone+15",
+      "precio": 899.0,
+      "precioOriginal": 969.0,
+      "valoracion": 4.7,
+      "numValoraciones": 4103,
+      "disponible": true,
+      "linkAfiliado": "https://www.amazon.es/dp/EJEMPLOG?tag=tuid-21",
+      "descripcion": "El iPhone estándar de última generación, con chip A16, puerto USB-C y una cámara principal de 48MP.",
+      "ventajas": [
+        "Rendimiento muy fluido y estable durante años",
+        "Ecosistema Apple muy integrado",
+        "Buena calidad de vídeo",
+        "Ahora con USB-C"
+      ],
+      "desventajas": [
+        "Precio elevado para la memoria base (128GB)",
+        "Carga más lenta que otros gama alta Android",
+        "Pantalla a 60Hz en el modelo estándar"
+      ],
+      "specs": {
+        "Pantalla": "6.1'' Super Retina XDR, 60Hz",
+        "Procesador": "Apple A16 Bionic",
+        "RAM": "6GB",
+        "Almacenamiento": "128GB",
+        "Cámara": "48MP + 12MP",
+        "Batería": "3349 mAh",
+        "Sistema operativo": "iOS 17"
+      },
+      "resenas": [
+        {
+          "autor": "Hugo S.",
+          "valoracion": 5,
+          "fecha": "2025-11-20",
+          "texto": "Cambié desde un iPhone 11 y la diferencia en cámara y fluidez es enorme."
+        }
+      ]
+    },
+    {
+      "id": "mov-003",
+      "categoria": "moviles",
+      "nombre": "Xiaomi Redmi Note 13 Pro",
+      "imagen": "https://placehold.co/500x500/ffffff/7c3aed?text=Redmi+Note+13",
+      "precio": 279.0,
+      "precioOriginal": 329.0,
+      "valoracion": 4.4,
+      "numValoraciones": 3567,
+      "disponible": true,
+      "linkAfiliado": "https://www.amazon.es/dp/EJEMPLOH?tag=tuid-21",
+      "descripcion": "Gama media con muy buena cámara y carga rápida, una de las opciones más vendidas en su rango de precio.",
+      "ventajas": [
+        "Excelente relación calidad-precio",
+        "Carga rápida de 67W incluida",
+        "Pantalla AMOLED de buena calidad",
+        "Diseño cuidado para su gama"
+      ],
+      "desventajas": [
+        "Capa MIUI/HyperOS con bastante publicidad de serie",
+        "Rendimiento limitado en juegos exigentes",
+        "Actualizaciones de software más lentas"
+      ],
+      "specs": {
+        "Pantalla": "6.67'' AMOLED, 120Hz",
+        "Procesador": "MediaTek Dimensity 7200 Ultra",
+        "RAM": "8GB",
+        "Almacenamiento": "256GB",
+        "Cámara": "200MP + 8MP + 2MP",
+        "Batería": "5100 mAh",
+        "Sistema operativo": "Android 13 (HyperOS)"
+      },
+      "resenas": [
+        {
+          "autor": "Elena D.",
+          "valoracion": 4,
+          "fecha": "2025-09-11",
+          "texto": "Para el precio que tiene, la cámara sorprende mucho. Le sobra publicidad de serie."
+        }
+      ]
+    },
+    {
+      "id": "mov-004",
+      "categoria": "moviles",
+      "nombre": "Google Pixel 8",
+      "imagen": "https://placehold.co/500x500/ffffff/7c3aed?text=Google+Pixel+8",
+      "precio": 649.0,
+      "precioOriginal": 799.0,
+      "valoracion": 4.5,
+      "numValoraciones": 987,
+      "disponible": false,
+      "linkAfiliado": "https://www.amazon.es/dp/EJEMPLOI?tag=tuid-21",
+      "descripcion": "Android puro con procesado fotográfico de referencia gracias al chip Tensor G3 y funciones de IA exclusivas.",
+      "ventajas": [
+        "Cámara con procesado computacional excelente",
+        "Android puro con actualizaciones rápidas",
+        "Funciones de IA muy útiles (borrado mágico, etc.)",
+        "Tamaño compacto y manejable"
+      ],
+      "desventajas": [
+        "Autonomía algo justa en uso intensivo",
+        "Disponibilidad limitada en algunas tiendas",
+        "Carga por debajo de la competencia (27W)"
+      ],
+      "specs": {
+        "Pantalla": "6.2'' OLED, 120Hz",
+        "Procesador": "Google Tensor G3",
+        "RAM": "8GB",
+        "Almacenamiento": "128GB",
+        "Cámara": "50MP + 12MP",
+        "Batería": "4575 mAh",
+        "Sistema operativo": "Android 14"
+      },
+      "resenas": []
+    },
+    {
+      "id": "mov-005",
+      "categoria": "moviles",
+      "nombre": "Motorola Edge 40",
+      "imagen": "https://placehold.co/500x500/ffffff/7c3aed?text=Motorola+Edge+40",
+      "precio": 399.0,
+      "precioOriginal": 499.0,
+      "valoracion": 4.2,
+      "numValoraciones": 654,
+      "disponible": true,
+      "linkAfiliado": "https://www.amazon.es/dp/EJEMPLOJ?tag=tuid-21",
+      "descripcion": "Diseño elegante y pantalla curva a un precio ajustado, buena opción de gama media equilibrada.",
+      "ventajas": [
+        "Diseño muy cuidado y pantalla curva atractiva",
+        "Peso y grosor reducidos",
+        "Carga rápida de 68W",
+        "Software cercano a Android puro"
+      ],
+      "desventajas": [
+        "Altavoces mono, sin sonido estéreo",
+        "Sin certificación IP68 (solo resistencia a salpicaduras)",
+        "Zoom óptico ausente"
+      ],
+      "specs": {
+        "Pantalla": "6.55'' pOLED curva, 144Hz",
+        "Procesador": "MediaTek Dimensity 8020",
+        "RAM": "8GB",
+        "Almacenamiento": "256GB",
+        "Cámara": "50MP + 13MP",
+        "Batería": "4400 mAh",
+        "Sistema operativo": "Android 13"
+      },
+      "resenas": [
+        {
+          "autor": "Marta L.",
+          "valoracion": 4,
+          "fecha": "2025-08-30",
+          "texto": "Muy fino y elegante, el único pero es el sonido, se nota que es mono."
+        }
+      ]
+    },
+    {
+      "id": "tab-001",
+      "categoria": "tablets",
+      "nombre": "Apple iPad 10ª generación",
+      "imagen": "https://placehold.co/500x500/ffffff/7c3aed?text=iPad+10",
+      "precio": 449.0,
+      "precioOriginal": 529.0,
+      "valoracion": 4.6,
+      "numValoraciones": 2876,
+      "disponible": true,
+      "linkAfiliado": "https://www.amazon.es/dp/EJEMPLOK?tag=tuid-21",
+      "descripcion": "La tablet más versátil para empezar en el ecosistema Apple, ideal para estudio, ocio y tareas ligeras de productividad.",
+      "ventajas": [
+        "Rendimiento fluido y estable",
+        "Gran catálogo de apps optimizadas para iPad",
+        "Compatible con Apple Pencil (1ª gen con adaptador)",
+        "Buena autonomía de batería"
+      ],
+      "desventajas": [
+        "El Apple Pencil compatible requiere un adaptador incómodo",
+        "Almacenamiento base algo justo (64GB)",
+        "Sin ranura microSD"
+      ],
+      "specs": {
+        "Pantalla": "10.9'' Liquid Retina",
+        "Procesador": "Apple A14 Bionic",
+        "RAM": "4GB",
+        "Almacenamiento": "64GB",
+        "Batería": "Hasta 10 horas",
+        "Conectividad": "WiFi (opción WiFi + Celular)",
+        "Sistema operativo": "iPadOS 17"
+      },
+      "resenas": [
+        {
+          "autor": "Cristina B.",
+          "valoracion": 5,
+          "fecha": "2025-10-14",
+          "texto": "Perfecta para tomar apuntes y ver series, muy fluida para el precio."
+        }
+      ]
+    },
+    {
+      "id": "tab-002",
+      "categoria": "tablets",
+      "nombre": "Samsung Galaxy Tab S9",
+      "imagen": "https://placehold.co/500x500/ffffff/7c3aed?text=Galaxy+Tab+S9",
+      "precio": 799.0,
+      "precioOriginal": 899.0,
+      "valoracion": 4.7,
+      "numValoraciones": 743,
+      "disponible": true,
+      "linkAfiliado": "https://www.amazon.es/dp/EJEMPLOL?tag=tuid-21",
+      "descripcion": "Tablet Android premium con pantalla AMOLED y S Pen incluido, pensada para creatividad y productividad avanzada.",
+      "ventajas": [
+        "Pantalla AMOLED de altísima calidad",
+        "S Pen incluido en la caja",
+        "Resistencia al agua IP68",
+        "Rendimiento de gama alta"
+      ],
+      "desventajas": [
+        "Precio elevado",
+        "Ecosistema de apps para Android tablet más limitado que iPadOS",
+        "Accesorios oficiales (teclado) se venden aparte"
+      ],
+      "specs": {
+        "Pantalla": "11'' Dynamic AMOLED 2X, 120Hz",
+        "Procesador": "Snapdragon 8 Gen 2",
+        "RAM": "8GB",
+        "Almacenamiento": "128GB",
+        "Batería": "8400 mAh",
+        "Conectividad": "WiFi (opción WiFi + 5G)",
+        "Sistema operativo": "Android 13 (One UI)"
+      },
+      "resenas": []
+    },
+    {
+      "id": "tab-003",
+      "categoria": "tablets",
+      "nombre": "Lenovo Tab P11",
+      "imagen": "https://placehold.co/500x500/ffffff/7c3aed?text=Lenovo+Tab+P11",
+      "precio": 229.0,
+      "precioOriginal": 279.0,
+      "valoracion": 4.1,
+      "numValoraciones": 1120,
+      "disponible": true,
+      "linkAfiliado": "https://www.amazon.es/dp/EJEMPLOM?tag=tuid-21",
+      "descripcion": "Tablet de entrada con gran pantalla y sonido cuidado, ideal para el consumo multimedia en familia.",
+      "ventajas": [
+        "Pantalla grande a buen precio",
+        "Cuatro altavoces con Dolby Atmos",
+        "Batería de larga duración",
+        "Buena opción para niños/uso familiar"
+      ],
+      "desventajas": [
+        "Rendimiento limitado para multitarea exigente",
+        "Cámaras de calidad básica",
+        "Actualizaciones de software poco frecuentes"
+      ],
+      "specs": {
+        "Pantalla": "11'' 2K IPS",
+        "Procesador": "MediaTek Helio G99",
+        "RAM": "4GB",
+        "Almacenamiento": "128GB",
+        "Batería": "7700 mAh",
+        "Conectividad": "WiFi",
+        "Sistema operativo": "Android 13"
+      },
+      "resenas": [
+        {
+          "autor": "Roberto Q.",
+          "valoracion": 4,
+          "fecha": "2025-07-02",
+          "texto": "La compré para los niños y va sobrada para vídeos y juegos ligeros."
+        }
+      ]
+    },
+    {
+      "id": "tab-004",
+      "categoria": "tablets",
+      "nombre": "Xiaomi Pad 6",
+      "imagen": "https://placehold.co/500x500/ffffff/7c3aed?text=Xiaomi+Pad+6",
+      "precio": 349.0,
+      "precioOriginal": 399.0,
+      "valoracion": 4.5,
+      "numValoraciones": 1389,
+      "disponible": true,
+      "linkAfiliado": "https://www.amazon.es/dp/EJEMPLON?tag=tuid-21",
+      "descripcion": "Tablet Android de gama media-alta con pantalla de 144Hz, muy popular entre quienes buscan rendimiento sin pagar de más.",
+      "ventajas": [
+        "Pantalla de 144Hz muy fluida",
+        "Rendimiento sobresaliente para su precio",
+        "Diseño metálico de aspecto premium",
+        "Buena autonomía"
+      ],
+      "desventajas": [
+        "Sin ranura microSD",
+        "Los accesorios (teclado, stylus) se venden por separado",
+        "Altavoces buenos pero no al nivel de gama más alta"
+      ],
+      "specs": {
+        "Pantalla": "11'' LCD, 144Hz",
+        "Procesador": "Snapdragon 870",
+        "RAM": "8GB",
+        "Almacenamiento": "256GB",
+        "Batería": "8840 mAh",
+        "Conectividad": "WiFi",
+        "Sistema operativo": "Android 13 (MIUI Pad)"
+      },
+      "resenas": [
+        {
+          "autor": "Fernando O.",
+          "valoracion": 5,
+          "fecha": "2025-11-08",
+          "texto": "Una pasada de pantalla para el precio, se nota fluida en todo momento."
+        }
+      ]
+    },
+    {
+      "id": "tab-005",
+      "categoria": "tablets",
+      "nombre": "Amazon Fire HD 10",
+      "imagen": "https://placehold.co/500x500/ffffff/7c3aed?text=Fire+HD+10",
+      "precio": 139.0,
+      "precioOriginal": 189.0,
+      "valoracion": 4.0,
+      "numValoraciones": 5210,
+      "disponible": true,
+      "linkAfiliado": "https://www.amazon.es/dp/EJEMPLOO?tag=tuid-21",
+      "descripcion": "Tablet económica orientada al consumo de contenido (vídeo, lectura, streaming) con muy buena relación precio-pantalla.",
+      "ventajas": [
+        "Precio muy económico",
+        "Pantalla Full HD correcta para el precio",
+        "Batería de larga duración",
+        "Ideal como segunda tablet o para niños"
+      ],
+      "desventajas": [
+        "Ecosistema de apps limitado (Amazon Appstore)",
+        "Rendimiento justo para tareas exigentes",
+        "Publicidad en la pantalla de bloqueo por defecto"
+      ],
+      "specs": {
+        "Pantalla": "10.1'' Full HD IPS",
+        "Procesador": "MediaTek MT8188J (octa-core)",
+        "RAM": "3GB",
+        "Almacenamiento": "64GB (ampliable por microSD)",
+        "Batería": "Hasta 13 horas",
+        "Conectividad": "WiFi",
+        "Sistema operativo": "Fire OS"
+      },
+      "resenas": [
+        {
+          "autor": "Beatriz H.",
+          "valoracion": 4,
+          "fecha": "2025-06-15",
+          "texto": "Para ver series y leer va perfecta, no esperes que mueva juegos exigentes."
+        }
+      ]
+    }
+  ]
+}

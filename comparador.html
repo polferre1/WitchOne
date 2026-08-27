@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comparador de productos · WitchOne</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+  <!-- ======================= CABECERA / NAVEGACIÓN ======================= -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="spark">✦</span><span class="brand-one">Witch</span>One
+      </a>
+      <button class="nav-toggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="main-nav">
+        <a href="categoria.html?cat=sobremesa" data-page="categoria.html">Sobremesa</a>
+        <a href="categoria.html?cat=portatiles" data-page="categoria.html">Portátiles</a>
+        <a href="categoria.html?cat=moviles" data-page="categoria.html">Móviles</a>
+        <a href="categoria.html?cat=tablets" data-page="categoria.html">Tablets</a>
+        <a href="comparador.html" class="compare-link active" data-page="comparador.html">⚖️ Comparador</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="breadcrumbs" style="margin-top:20px">
+        <a href="index.html">Inicio</a> / <span>Comparador</span>
+      </div>
+    </div>
+
+    <section class="category-hero">
+      <div class="container">
+        <span class="icon">⚖️</span>
+        <h1>Comparador de productos</h1>
+        <p class="text-muted">Elige una categoría, marca de 2 a 4 productos y compáralos lado a lado: precio, specs, ventajas y desventajas.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="compare-picker">
+
+          <!-- ======================= PANEL DE SELECCIÓN ======================= -->
+          <div class="panel picker-panel">
+            <h3 style="margin-bottom:14px">Selecciona productos</h3>
+            <div class="form-group">
+              <label for="compare-category-select">Categoría</label>
+              <select id="compare-category-select"></select>
+            </div>
+            <div class="picker-list" id="compare-picker-list"></div>
+            <button type="button" id="compare-clear-all" class="btn btn-outline btn-block" style="margin-top:14px">Vaciar selección</button>
+          </div>
+
+          <!-- ======================= TABLA COMPARATIVA ======================= -->
+          <div class="compare-table-wrap" id="compare-table-wrap"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================= PIE DE PÁGINA ======================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand">
+          <a href="index.html" class="logo"><span class="spark">✦</span><span class="brand-one">Witch</span>One</a>
+          <p>Comparativas y recomendaciones de tecnología para ayudarte a elegir sin complicaciones.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Categorías</h4>
+          <ul>
+            <li><a href="categoria.html?cat=sobremesa">Ordenadores Sobremesa</a></li>
+            <li><a href="categoria.html?cat=portatiles">Portátiles</a></li>
+            <li><a href="categoria.html?cat=moviles">Móviles</a></li>
+            <li><a href="categoria.html?cat=tablets">Tablets</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Herramientas</h4>
+          <ul>
+            <li><a href="comparador.html">Comparador de productos</a></li>
+            <li><a href="admin.html">Panel de administración</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="affiliate-disclosure">
+        <strong>Aviso de afiliación:</strong> WitchOne es un participante en el Programa de Afiliados de Amazon EU, un
+        programa de publicidad para afiliados diseñado para ofrecer a los sitios web un medio para obtener comisiones
+        por publicidad, publicitando e incluyendo enlaces a Amazon.es. Como Afiliado de Amazon, obtenemos ingresos por
+        las compras adscritas que cumplen los requisitos aplicables, sin coste adicional para ti. Los precios mostrados
+        son orientativos y pueden variar; consulta siempre el precio final en Amazon antes de comprar.
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 WitchOne. Todos los derechos reservados.</span>
+        <span>Amazon y el logotipo de Amazon son marcas registradas de Amazon.com, Inc. o sus filiales.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/nav.js"></script>
+  <script type="module">
+    import { initComparePage } from './js/comparador.js';
+    initComparePage();
+  </script>
+</body>
+</html>

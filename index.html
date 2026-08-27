@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WitchOne · Guías y comparativas de tecnología</title>
+  <meta name="description" content="WitchOne: descubre los mejores ordenadores, portátiles, móviles y tablets con guías, comparativas y enlaces directos a Amazon.">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+  <!-- ======================= CABECERA / NAVEGACIÓN ======================= -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="spark">✦</span><span class="brand-one">Witch</span>One
+      </a>
+      <button class="nav-toggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="main-nav">
+        <a href="categoria.html?cat=sobremesa" data-page="categoria.html">Sobremesa</a>
+        <a href="categoria.html?cat=portatiles" data-page="categoria.html">Portátiles</a>
+        <a href="categoria.html?cat=moviles" data-page="categoria.html">Móviles</a>
+        <a href="categoria.html?cat=tablets" data-page="categoria.html">Tablets</a>
+        <a href="comparador.html" class="compare-link" data-page="comparador.html">⚖️ Comparador</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================= HERO ======================= -->
+    <section class="hero">
+      <div class="container">
+        <span class="badge">✦ Recomendaciones honestas de tecnología</span>
+        <h1 style="margin-top:18px">Encuentra tu próximo dispositivo <span class="highlight">sin hechizos, solo buenas decisiones</span></h1>
+        <p>En WitchOne analizamos ordenadores, portátiles, móviles y tablets para ayudarte a elegir con cabeza. Compara modelos y compra directamente en Amazon.</p>
+        <div class="hero-actions">
+          <a href="#categorias" class="btn btn-primary">Explorar categorías</a>
+          <a href="comparador.html" class="btn btn-outline">Ir al comparador</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= CATEGORÍAS DESTACADAS ======================= -->
+    <section class="section" id="categorias">
+      <div class="container">
+        <h2 class="section-title">Categorías destacadas</h2>
+        <p class="section-subtitle">Elige un tipo de producto para ver nuestra selección y comparar opciones.</p>
+        <div class="category-grid" id="categories-grid">
+          <!-- Las 4 tarjetas de categoría se generan dinámicamente con js/render-home.js -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================= PIE DE PÁGINA ======================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand">
+          <a href="index.html" class="logo"><span class="spark">✦</span><span class="brand-one">Witch</span>One</a>
+          <p>Comparativas y recomendaciones de tecnología para ayudarte a elegir sin complicaciones.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Categorías</h4>
+          <ul>
+            <li><a href="categoria.html?cat=sobremesa">Ordenadores Sobremesa</a></li>
+            <li><a href="categoria.html?cat=portatiles">Portátiles</a></li>
+            <li><a href="categoria.html?cat=moviles">Móviles</a></li>
+            <li><a href="categoria.html?cat=tablets">Tablets</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Herramientas</h4>
+          <ul>
+            <li><a href="comparador.html">Comparador de productos</a></li>
+            <li><a href="admin.html">Panel de administración</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="affiliate-disclosure">
+        <strong>Aviso de afiliación:</strong> WitchOne es un participante en el Programa de Afiliados de Amazon EU, un
+        programa de publicidad para afiliados diseñado para ofrecer a los sitios web un medio para obtener comisiones
+        por publicidad, publicitando e incluyendo enlaces a Amazon.es. Como Afiliado de Amazon, obtenemos ingresos por
+        las compras adscritas que cumplen los requisitos aplicables, sin coste adicional para ti. Los precios mostrados
+        son orientativos y pueden variar; consulta siempre el precio final en Amazon antes de comprar.
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 WitchOne. Todos los derechos reservados.</span>
+        <span>Amazon y el logotipo de Amazon son marcas registradas de Amazon.com, Inc. o sus filiales.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/nav.js"></script>
+  <script type="module" src="js/render-home.js"></script>
+</body>
+</html>
