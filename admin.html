@@ -49,6 +49,42 @@
       </ol>
     </div>
 
+    <!-- ======================= SINCRONIZACIÓN CON GITHUB ======================= -->
+    <div class="panel" id="github-sync-panel" style="margin-bottom:24px">
+      <h3 style="margin-bottom:10px">☁️ Guardar cambios directamente en GitHub (opcional)</h3>
+      <p class="hint" style="margin-bottom:14px">
+        Conecta este panel con tu repositorio para que "☁️ Guardar en GitHub" actualice
+        <code>data/products.json</code> directamente en tu repositorio, sin descargar ni subir nada a mano.
+        La web se actualiza sola en 1-2 minutos. <strong>El token se guarda solo en este navegador</strong>
+        y solo se usa para hablar con la API de GitHub, nunca se envía a ningún otro sitio.
+      </p>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="gh-repo">Repositorio (usuario/repositorio)</label>
+          <input type="text" id="gh-repo" placeholder="polferre1/WitchOne">
+        </div>
+        <div class="form-group">
+          <label for="gh-branch">Rama</label>
+          <input type="text" id="gh-branch" placeholder="main">
+          <div class="hint">Debe ser la misma rama que tengas seleccionada en GitHub Pages.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="gh-token">Token de acceso personal de GitHub</label>
+        <input type="password" id="gh-token" placeholder="github_pat_...">
+        <div class="hint">
+          Créalo en GitHub → tu foto de perfil → Settings → Developer settings → Personal access tokens →
+          <strong>Fine-grained tokens</strong> → "Generate new token". Dale acceso <strong>solo a este
+          repositorio</strong> (Repository access → Only select repositories) y permiso
+          <strong>Contents: Read and write</strong>. No compartas este token con nadie ni lo pegues en otro sitio.
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button type="button" id="btn-save-github" class="btn btn-primary btn-sm">☁️ Guardar en GitHub</button>
+        <button type="button" id="btn-forget-github" class="btn btn-outline btn-sm">Olvidar token guardado</button>
+      </div>
+    </div>
+
     <div id="admin-status" class="admin-status"></div>
 
     <div class="admin-shell">
@@ -62,15 +98,31 @@
             No podemos leer Amazon automáticamente solo con el link (el navegador lo bloquea y además
             Amazon prohíbe el scraping automatizado en su programa de afiliados). Pero puedes hacerlo así:
             abre el producto en Amazon → selecciona el texto de la página, idealmente desde el título hasta
-            el final de "Información técnica" → cópialo (Ctrl+C, o mantener pulsado y "Copiar" en el móvil) →
-            pégalo aquí abajo. Detectaremos nombre, precio, valoración, nº de valoraciones, ventajas y
-            especificaciones automáticamente.
+            el final de "Acerca de este artículo" → cópialo (Ctrl+C, o mantener pulsado y "Copiar" en el móvil) →
+            pégalo aquí abajo. Detectaremos nombre, precio, valoración, nº de valoraciones y ventajas
+            automáticamente.
           </p>
           <div class="form-group">
             <textarea id="amazon-paste-text" rows="6" placeholder="Pega aquí el texto copiado de la página del producto en Amazon..."></textarea>
           </div>
-          <button type="button" id="btn-parse-amazon" class="btn btn-primary btn-sm">🪄 Detectar datos automáticamente</button>
-          <div class="hint" style="margin-top:10px">
+          <button type="button" id="btn-parse-amazon" class="btn btn-primary btn-sm">🪄 Detectar nombre, precio, valoración y ventajas</button>
+
+          <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--color-border)">
+            <label for="amazon-specs-text" style="display:block;margin-bottom:6px;font-size:.88rem;color:var(--color-text-muted);font-weight:500">
+              Tabla de especificaciones (aparte, más fiable)
+            </label>
+            <p class="hint" style="margin-bottom:10px">
+              Las especificaciones ("Información técnica" / "Detalles del producto") suelen copiarse en un
+              formato distinto al resto de la página. Selecciona y copia <strong>solo esa tabla</strong> en
+              Amazon y pégala aquí para detectarla mejor.
+            </p>
+            <div class="form-group">
+              <textarea id="amazon-specs-text" rows="5" placeholder="Pega aquí SOLO la tabla de especificaciones técnicas..."></textarea>
+            </div>
+            <button type="button" id="btn-parse-specs" class="btn btn-outline btn-sm">🪄 Detectar especificaciones</button>
+          </div>
+
+          <div class="hint" style="margin-top:14px">
             Es una detección "best effort": revisa siempre los campos rellenados antes de guardar. La imagen
             y el link de afiliado nunca se autorrellenan, esos los pones tú a mano.
           </div>

@@ -90,28 +90,71 @@ bloquea esas peticiones entre webs (CORS) y, además, el Programa de Afiliados d
 prohíbe extraer datos de sus páginas de forma automatizada (scraping), incluso si fuera
 técnicamente posible.
 
-En su lugar, el panel incluye un cuadro de **"Autorrelleno desde Amazon"** que sí es
-100% seguro y permitido: tú mismo copias el texto de la página del producto (nada se
-descarga automáticamente) y un script local detecta y rellena por ti:
-- Nombre del producto
-- Precio
-- Valoración y nº de valoraciones
-- Ventajas (a partir de "Acerca de este artículo")
-- Especificaciones (a partir de "Información técnica")
+En su lugar, el panel incluye **dos cuadros** de autorrelleno que sí son 100% seguros y
+permitidos: tú mismo copias el texto de la página del producto (nada se descarga
+automáticamente) y un script local detecta y rellena por ti.
 
-Cómo usarlo:
+**Cuadro 1 — Texto general** (nombre, precio, valoración, ventajas):
 1. Abre el producto en Amazon.
-2. Selecciona el texto de la página (idealmente desde el título hasta el final de
-   "Información técnica") y cópialo.
-3. Pégalo en el cuadro de texto del admin y pulsa "🪄 Detectar datos automáticamente".
-4. Revisa los campos rellenados (la detección es orientativa, no siempre acierta al 100%)
-   y añade a mano la **imagen** (URL de la foto) y tu **link de afiliado**, que nunca se
-   autorrellenan.
+2. Selecciona el texto desde el título hasta el final de "Acerca de este artículo" y cópialo.
+3. Pégalo en el primer cuadro y pulsa "🪄 Detectar nombre, precio, valoración y ventajas".
+
+**Cuadro 2 — Tabla de especificaciones** (aparte, más fiable):
+Las tablas de "Información técnica" de Amazon se copian con un formato distinto al resto
+de la página (a veces con caracteres invisibles de formato bidireccional), así que tienen
+su propio cuadro dedicado:
+1. En la página de Amazon, selecciona **solo** la tabla "Información técnica" o
+   "Detalles del producto" y cópiala.
+2. Pégala en el segundo cuadro ("Tabla de especificaciones") y pulsa
+   "🪄 Detectar especificaciones".
+3. El parser reconoce varios formatos habituales: "Clave: Valor" en la misma línea, tablas
+   copiadas con tabulador, o la clave y el valor en dos líneas seguidas.
+
+En ambos casos: revisa los campos rellenados (la detección es orientativa, no siempre
+acierta al 100%) y añade a mano la **imagen** (URL de la foto) y tu **link de afiliado**,
+que nunca se autorrellenan.
 
 Si en el futuro tu cuenta de Afiliado consigue ventas cualificadas, existe una vía 100%
 automática y permitida: la API oficial de Amazon (Product Advertising API), que requeriría
 añadir un pequeño servidor/función serverless para consultar los datos sin exponer las
 claves de la API en el navegador. Dímelo cuando llegue ese momento y lo montamos.
+
+### ☁️ Guardar cambios directamente en GitHub (sin descargar/subir el JSON a mano)
+
+Si tu web está en un repositorio de GitHub (como este), puedes saltarte el paso de
+descargar `products.json` y sustituirlo a mano: el panel puede subir el archivo
+actualizado directamente a tu repositorio con un clic.
+
+**Configuración (una sola vez):**
+1. Entra en GitHub → tu foto de perfil (arriba a la derecha) → **Settings**.
+2. En el menú de la izquierda, baja hasta **Developer settings** → **Personal access
+   tokens** → **Fine-grained tokens** → **Generate new token**.
+3. Ponle un nombre (ej. "WitchOne admin"), y en **Repository access** elige
+   **Only select repositories** → selecciona tu repositorio `WitchOne`.
+4. En **Permissions → Repository permissions**, busca **Contents** y ponlo en
+   **Read and write**. El resto de permisos déjalos como están (sin acceso).
+5. Genera el token y cópialo (solo se muestra una vez).
+6. En `admin.html`, en el bloque "☁️ Guardar cambios directamente en GitHub":
+   - **Repositorio**: `polferre1/WitchOne`
+   - **Rama**: la misma que tengas seleccionada en GitHub Pages (Settings → Pages).
+   - **Token**: pega el token que acabas de generar.
+
+**Uso normal:** después de crear/editar/borrar productos, pulsa **"☁️ Guardar en
+GitHub"**. Sube el `products.json` actualizado directamente al repositorio y la web se
+actualiza sola en 1-2 minutos (GitHub Pages se reconstruye automáticamente).
+
+**Importante sobre seguridad:**
+- El token se guarda **solo en este navegador** (localStorage) y las peticiones van
+  directas de tu navegador a `api.github.com`; no pasan por ningún servidor nuestro.
+- Usa siempre un **fine-grained token** limitado a este único repositorio con permiso
+  solo de `Contents`, nunca un token clásico con acceso a toda tu cuenta.
+- No uses esta opción desde un ordenador/navegador compartido o público. Si lo haces,
+  pulsa "Olvidar token guardado" al terminar.
+- Si el token se filtrara, revócalo desde GitHub → Settings → Developer settings →
+  Personal access tokens, y genera uno nuevo.
+
+La opción de **"⬇ Descargar products.json"** sigue disponible como alternativa manual si
+prefieres no usar un token de GitHub.
 
 **Botones extra del panel:**
 - **"📂 Importar JSON"**: carga un `products.json` desde tu ordenador al

@@ -252,6 +252,7 @@ function resetForm() {
   initDynamicEditors(null);
   updateImagePreview();
   document.getElementById('amazon-paste-text').value = '';
+  document.getElementById('amazon-specs-text').value = '';
 }
 
 function updateImagePreview() {
@@ -329,7 +330,66 @@ function parseLocaleNumber(raw) {
   return isNaN(n) ? null : n;
 }
 
-function parseAmazonPastedText(text) {
+/**
+ * Amazon suele incrustar caracteres invisibles de control de dirección de
+ * texto (LRM/RLM, marcas de ancho cero...) alrededor de valores en sus
+ * tablas de detalles. Son invisibles al ojo pero rompen las expresiones
+ * regulares si no los quitamos primero.
+ */
+function stripInvisibleChars(text) {
+  return text.replace(/[\u200B-\u200F\u202A-\u202E\uFEFF]/g, '');
+}
+
+/**
+ * Analiza un bloque de texto en busca de pares "clave/valor", sin importar
+ * si vienen como "Clave: Valor" en una misma línea, separados por tabulador
+ * (habitual al copiar una tabla), o en dos líneas seguidas (clave y luego
+ * valor). Se usa tanto para el cuadro dedicado a especificaciones como de
+ * apoyo dentro del texto general.
+ */
+function parseKeyValueBlock(text, { maxEntries = 30 } = {}) {
+  const lines = stripInvisibleChars(text).split('\n').map((l) => l.trim()).filter(Boolean);
+  const specs = {};
+  const stopRegex = /^(opiniones|rese[ñn]as|garant[ií]a|preguntas?( y respuestas)?|productos relacionados|comentarios|valoraciones de client|dimensiones del paquete|acerca de este art[ií]culo)/i;
+
+  for (let i = 0; i < lines.length && Object.keys(specs).length < maxEntries; i += 1) {
+    const line = lines[i];
+    if (stopRegex.test(line)) break;
+
+    // Formato "Clave<TAB>Valor" (habitual al copiar una tabla con celdas)
+    if (line.includes('\t')) {
+      const [key, ...rest] = line.split('\t');
+      const value = rest.join(' ').trim();
+      if (key.trim() && value && key.trim().length < 45 && value.length < 150) {
+        specs[key.trim()] = value;
+        continue;
+      }
+    }
+
+    // Formato "Clave: Valor" o "Clave : Valor" en la misma línea
+    const colonMatch = line.match(/^([^:]{2,45}?)\s*:\s*(.{1,150})$/);
+    if (colonMatch) {
+      specs[colonMatch[1].trim()] = colonMatch[2].trim();
+      continue;
+    }
+
+    // Formato en dos líneas: la clave en una línea y el valor en la siguiente
+    const next = lines[i + 1];
+    if (
+      next && !stopRegex.test(next) &&
+      !next.includes('\t') && !next.includes(':') &&
+      line.length > 1 && line.length <= 40 && next.length <= 150
+    ) {
+      specs[line] = next;
+      i += 1;
+    }
+  }
+
+  return specs;
+}
+
+function parseAmazonPastedText(rawText) {
+  const text = stripInvisibleChars(rawText);
   const lines = text.split('\n').map((l) => l.trim()).filter(Boolean);
   const result = { nombre: '', precio: null, valoracion: null, numValoraciones: null, ventajas: [], specs: {} };
 
@@ -359,18 +419,11 @@ function parseAmazonPastedText(text) {
     }
   }
 
-  const specsIndex = lines.findIndex((l) => /informaci[oó]n t[eé]cnica|detalles del producto/i.test(l));
+  // Intento de detectar también las specs si vienen dentro del mismo texto general
+  // (mejor resultado si se pegan aparte en el cuadro dedicado de especificaciones).
+  const specsIndex = lines.findIndex((l) => /informaci[oó]n (t[eé]cnica|adicional)|detalles (del producto|adicionales)|especificaciones/i.test(l));
   if (specsIndex !== -1) {
-    for (let i = specsIndex + 1; i + 1 < lines.length && Object.keys(result.specs).length < 15; i += 2) {
-      const key = lines[i];
-      const value = lines[i + 1];
-      if (/opiniones|rese[ñn]as|garant[ií]a|pregunta/i.test(key)) break;
-      if (key && value && key.length < 40 && value.length < 120) {
-        result.specs[key] = value;
-      } else {
-        break;
-      }
-    }
+    result.specs = parseKeyValueBlock(lines.slice(specsIndex + 1).join('\n'), { maxEntries: 15 });
   }
 
   return result;
@@ -465,6 +518,106 @@ function handleImportFile(file) {
 }
 
 /* ---------------------------------------------------------------------- */
+/* GUARDADO DIRECTO EN GITHUB (opcional)                                   */
+/* Usa la API REST de GitHub para actualizar data/products.json en el     */
+/* repositorio sin pasar por descargar/subir el archivo a mano. El token  */
+/* de acceso se guarda solo en localStorage de este navegador y las       */
+/* peticiones van directas del navegador a api.github.com, sin ningún     */
+/* servidor intermedio nuestro.                                           */
+/* ---------------------------------------------------------------------- */
+
+const GITHUB_CONFIG_KEY = 'witchone_github_config';
+
+function loadGitHubConfig() {
+  try {
+    const raw = localStorage.getItem(GITHUB_CONFIG_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
+  }
+}
+
+function saveGitHubConfig(config) {
+  localStorage.setItem(GITHUB_CONFIG_KEY, JSON.stringify(config));
+}
+
+function base64EncodeUtf8(str) {
+  return btoa(unescape(encodeURIComponent(str)));
+}
+
+function fillGitHubFormFromStorage() {
+  const config = loadGitHubConfig();
+  if (config.repo) document.getElementById('gh-repo').value = config.repo;
+  if (config.branch) document.getElementById('gh-branch').value = config.branch;
+  if (config.token) document.getElementById('gh-token').value = config.token;
+}
+
+async function pushProductsToGitHub() {
+  const token = document.getElementById('gh-token').value.trim();
+  const repoFull = document.getElementById('gh-repo').value.trim();
+  const branch = document.getElementById('gh-branch').value.trim() || 'main';
+
+  if (!token || !repoFull) {
+    showStatus('Rellena el token y el repositorio ("usuario/repositorio") para guardar en GitHub.', 'error');
+    return;
+  }
+
+  const [owner, repo] = repoFull.split('/').map((s) => s.trim());
+  if (!owner || !repo) {
+    showStatus('El repositorio debe tener el formato "usuario/repositorio", ej: polferre1/WitchOne.', 'error');
+    return;
+  }
+
+  saveGitHubConfig({ token, repo: repoFull, branch });
+
+  const path = 'data/products.json';
+  const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+  const headers = { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json' };
+
+  showStatus('Guardando en GitHub...', 'info');
+
+  try {
+    let sha;
+    const getRes = await fetch(`${apiUrl}?ref=${encodeURIComponent(branch)}`, { headers });
+    if (getRes.ok) {
+      sha = (await getRes.json()).sha;
+    } else if (getRes.status !== 404) {
+      const err = await getRes.json().catch(() => ({}));
+      throw new Error(err.message || `Error ${getRes.status} al leer el archivo actual en GitHub.`);
+    }
+
+    const content = JSON.stringify({ productos: products }, null, 2);
+
+    const putRes = await fetch(apiUrl, {
+      method: 'PUT',
+      headers: { ...headers, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: 'Actualiza products.json desde el panel de administración de WitchOne',
+        content: base64EncodeUtf8(content),
+        branch,
+        ...(sha ? { sha } : {})
+      })
+    });
+
+    if (!putRes.ok) {
+      const err = await putRes.json().catch(() => ({}));
+      throw new Error(err.message || `Error ${putRes.status} al guardar en GitHub.`);
+    }
+
+    showStatus('✅ Guardado en GitHub. La web se actualizará sola en 1-2 minutos.', 'ok');
+  } catch (err) {
+    console.error(err);
+    showStatus(`❌ Error al guardar en GitHub: ${err.message}`, 'error');
+  }
+}
+
+function forgetGitHubConfig() {
+  localStorage.removeItem(GITHUB_CONFIG_KEY);
+  document.getElementById('gh-token').value = '';
+  showStatus('Token olvidado. Ya no queda guardado en este navegador.', 'info');
+}
+
+/* ---------------------------------------------------------------------- */
 /* INICIALIZACIÓN                                                          */
 /* ---------------------------------------------------------------------- */
 
@@ -473,6 +626,7 @@ async function initAdmin() {
   await loadInitialProducts();
   initDynamicEditors(null);
   renderTable();
+  fillGitHubFormFromStorage();
 
   document.getElementById('f-imagen').addEventListener('input', updateImagePreview);
 
@@ -550,6 +704,24 @@ async function initAdmin() {
     document.getElementById('f-nombre').scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 
+  document.getElementById('btn-parse-specs').addEventListener('click', () => {
+    const text = document.getElementById('amazon-specs-text').value;
+    if (!text.trim()) {
+      showStatus('Pega primero la tabla de especificaciones copiada de Amazon.', 'error');
+      return;
+    }
+
+    const detectedSpecs = parseKeyValueBlock(text);
+    if (!Object.keys(detectedSpecs).length) {
+      showStatus('No se han detectado especificaciones en ese texto. Asegúrate de copiar la tabla completa, con la clave y el valor de cada fila.', 'error');
+      return;
+    }
+
+    specsEd.setValues({ ...specsEd.getValues(), ...detectedSpecs });
+    showStatus(`Detectadas ${Object.keys(detectedSpecs).length} especificaciones. Revísalas en el formulario.`, 'ok');
+    document.getElementById('specs-editor').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
   document.getElementById('admin-search').addEventListener('input', (e) => renderTable(e.target.value));
 
   document.getElementById('btn-export').addEventListener('click', downloadProductsJSON);
@@ -566,6 +738,9 @@ async function initAdmin() {
     resetForm();
     showStatus('Borrador reiniciado desde data/products.json.', 'info');
   });
+
+  document.getElementById('btn-save-github').addEventListener('click', pushProductsToGitHub);
+  document.getElementById('btn-forget-github').addEventListener('click', forgetGitHubConfig);
 }
 
 initAdmin();
